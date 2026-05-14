@@ -2,6 +2,7 @@
 import './App.css'
 import Counter from './stste'
 import Batting from './batting'
+import Bolling from './bolling'
 
 function App() {
   function handelClick() {
@@ -22,7 +23,7 @@ function App() {
       <h3>Get Start with React</h3>
 
       <Batting></Batting>
-
+      <Bolling></Bolling>
       <Counter></Counter>
 
       <button className='button-style' onClick={handelClick}>Click Me</button>
