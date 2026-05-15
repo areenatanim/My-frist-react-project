@@ -201,3 +201,10 @@
 .styleCounter {
   border: 2px solid red;
 }
+
+.carde {
+  border: 2px solid goldenrod;
+  margin: 50px;
+  border-radius: 10px;
+  padding: 20px;
+}

@@ -3,6 +3,18 @@ import './App.css'
 import Counter from './stste'
 import Batting from './batting'
 import Bolling from './bolling'
+import Users from './users'
+import { Suspense } from 'react'
+import Friends from './friends'
+
+const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json())
+
+const fetchFriends = async () => {
+  const rest = fetch('https://jsonplaceholder.typicode.com/users')
+  return (await rest).json();
+}
+
+const friendsPromise = fetchFriends();
 
 function App() {
   function handelClick() {
@@ -21,6 +33,14 @@ function App() {
 
 
       <h3>Get Start with React</h3>
+
+      <Suspense fallback={<h2>Loading....</h2>}>
+        <Users fetchUsers={fetchUsers}></Users>
+      </Suspense>
+
+      <Suspense fallback={<h2 className='carde'>Friends are coming......</h2>}>
+        <Friends friendsPromise={friendsPromise}></Friends>
+      </Suspense>
 
       <Batting></Batting>
       <Bolling></Bolling>
