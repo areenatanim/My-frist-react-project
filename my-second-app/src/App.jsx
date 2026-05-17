@@ -6,6 +6,10 @@ import Bolling from './bolling'
 import Users from './users'
 import { Suspense } from 'react'
 import Friends from './friends'
+import Post from './post'
+import CountBtn from './button'
+import AnimatedToggle from './toggle'
+
 
 const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json())
 
@@ -13,8 +17,17 @@ const fetchFriends = async () => {
   const rest = fetch('https://jsonplaceholder.typicode.com/users')
   return (await rest).json();
 }
-
 const friendsPromise = fetchFriends();
+
+
+const fetchPost = async () => {
+  const rest = fetch('https://jsonplaceholder.typicode.com/posts');
+  return (await rest).json();
+}
+const postPromise = fetchPost();
+
+
+
 
 function App() {
   function handelClick() {
@@ -33,6 +46,15 @@ function App() {
 
 
       <h3>Get Start with React</h3>
+      <AnimatedToggle></AnimatedToggle>
+
+      <Suspense fallback={<h2>Data Loading.......</h2>}>
+        <CountBtn></CountBtn>
+      </Suspense>
+
+      <Suspense fallback={<h4 className='carde'>post are loading........</h4>}>
+        <Post postPromise={postPromise}></Post>
+      </Suspense>
 
       <Suspense fallback={<h2>Loading....</h2>}>
         <Users fetchUsers={fetchUsers}></Users>
@@ -41,6 +63,8 @@ function App() {
       <Suspense fallback={<h2 className='carde'>Friends are coming......</h2>}>
         <Friends friendsPromise={friendsPromise}></Friends>
       </Suspense>
+
+
 
       <Batting></Batting>
       <Bolling></Bolling>
